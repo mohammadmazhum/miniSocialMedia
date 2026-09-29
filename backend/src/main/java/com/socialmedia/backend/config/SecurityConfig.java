@@ -62,6 +62,10 @@ public class SecurityConfig {
                                 "/api/users/register",
                                 "/test-db"
                         ).permitAll()
+                        .requestMatchers(
+                                org.springframework.http.HttpMethod.OPTIONS,
+                                "/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 );
 
@@ -83,7 +87,7 @@ public class SecurityConfig {
         );
 
         configuration.setAllowedHeaders(
-                List.of("Authorization", "Content-Type")
+                List.of("")
         );
 
         configuration.setAllowCredentials(true);
