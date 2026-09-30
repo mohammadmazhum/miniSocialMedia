@@ -6,7 +6,6 @@ import com.socialmedia.backend.model.Post;
 import com.socialmedia.backend.model.User;
 import com.socialmedia.backend.repository.UserRepository;
 import com.socialmedia.backend.repository.PostRepository;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

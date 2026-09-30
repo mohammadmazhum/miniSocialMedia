@@ -60,7 +60,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/users/register",
-                                "/test-db"
+                                "/test-db",
+                                "/error"
                         ).permitAll()
                         .requestMatchers(
                                 org.springframework.http.HttpMethod.OPTIONS,
