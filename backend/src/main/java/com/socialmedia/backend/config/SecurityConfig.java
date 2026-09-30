@@ -25,7 +25,7 @@ public class SecurityConfig {
         this.jwtService = jwtService;
     }
 
-    @Value("${app.frontend-url:http://localhost:5173}")
+    @Value("${FRONTEND_URL:http://localhost:5173}")
     private String frontendUrl;
 
     @Bean
@@ -79,15 +79,16 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of(frontendUrl)
+                List.of(frontendUrl.trim().replaceAll("/$", ""),
+                        "http://localhost:5173")
         );
 
         configuration.setAllowedMethods(
-                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                List.of("GET", "POST", "PUT","PATCH", "DELETE", "OPTIONS")
         );
 
         configuration.setAllowedHeaders(
-                List.of("")
+                List.of("Content-Type", "Authorization", "Accept")
         );
 
         configuration.setAllowCredentials(true);
@@ -100,4 +101,9 @@ public class SecurityConfig {
         return source;
     }
 
-}
+    @jakarta.annotation.PostConstruct
+        public void logOrigin() {
+                System.out.println("CORS frontendUrl = [" + frontendUrl + "]");
+        }
+
+}       
